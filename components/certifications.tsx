@@ -25,8 +25,15 @@ const certs: {
   category: CertCategory
 }[] = [
   {
+  title: 'Human Skills in the Age of AI',
+  issuer: 'Microsoft & LinkedIn Learning',
+  date: 'Jul-2026',
+  link: 'https://www.linkedin.com/learning/certificates/16bd075bac2796c55dabb1c670cfb4eec161ab1f24db119182c18093f8af4264?trk=share_certificate',
+  category: 'Artificial Intelligence & GenAI',
+},
+  {
     title: 'Career Essentials in Generative AI',
-    issuer: 'Microsoft & LinkedIn',
+    issuer: 'Microsoft & LinkedIn Learning',
     date: 'Mar-2026',
     link: 'https://www.linkedin.com/learning/certificates/6731d6d9859cee6db3f6abf7f8418ebd85e0477153f95fc3c111c1685668b48a',
     category: 'Artificial Intelligence & GenAI',
