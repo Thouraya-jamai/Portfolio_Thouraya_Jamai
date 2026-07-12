@@ -51,8 +51,8 @@ export function Contact() {
                 Get in touch
               </LinkButton>
               <LinkButton
-                href="/CV_Thouraya_Jamai.pdf"
-                download="/CV_Thouraya_Jamai.pdf"
+                href="/CV_ThourayaJamai.pdf"
+                download="/CV_ThourayaJamai.pdf"
                 className="border border-card/40 bg-transparent text-card hover:bg-card/10"
               >
                 <Download className="size-4" />

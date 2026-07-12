@@ -96,8 +96,8 @@ export function Hero() {
               <ArrowRight className="size-4" />
             </LinkButton>
             <LinkButton
-              href="/CV_Thouraya_Jamai.pdf"
-              download="/CV_Thouraya_Jamai.pdf"
+              href="/CV_ThourayaJamai.pdf"
+              download="/CV_ThourayaJamai.pdf"
               className="border border-brown/30 bg-transparent text-brown hover:bg-secondary"
             >
               <Download className="size-4" />

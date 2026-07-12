@@ -104,8 +104,8 @@ export function Navbar() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <LinkButton
-            href="/CV_Thouraya_Jamai.pdf"
-            download="/CV_Thouraya_Jamai.pdf"
+            href="/CV_ThourayaJamai.pdf"
+            download="/CV_ThourayaJamai.pdf"
             size="sm"
             className="hidden bg-olive text-primary-foreground hover:bg-olive/90 sm:inline-flex"
           >
@@ -144,7 +144,7 @@ export function Navbar() {
             ))}
             <li className="pt-2">
               <LinkButton
-                href="/Thouraya-Jamai-Resume.pdf"
+                href="/CV_ThourayaJamai.pdf"
                 download
                 size="sm"
                 className="w-full bg-olive text-primary-foreground hover:bg-olive/90"
