@@ -50,14 +50,7 @@ export function Contact() {
                 <Mail className="size-4" />
                 Get in touch
               </LinkButton>
-              <LinkButton
-                href="/CV_ThourayaJamai.pdf"
-                download="/CV_ThourayaJamai.pdf"
-                className="border border-card/40 bg-transparent text-card hover:bg-card/10"
-              >
-                <Download className="size-4" />
-                Download Resume
-              </LinkButton>
+            
             </div>
 
             <div className="mt-12 grid gap-4 sm:grid-cols-3">

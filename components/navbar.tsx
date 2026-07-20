@@ -103,15 +103,7 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <LinkButton
-            href="/CV_ThourayaJamai.pdf"
-            download="/CV_ThourayaJamai.pdf"
-            size="sm"
-            className="hidden bg-olive text-primary-foreground hover:bg-olive/90 sm:inline-flex"
-          >
-            <Download className="size-4" />
-            Resume
-          </LinkButton>
+          
           <button
             type="button"
             aria-label="Toggle menu"
@@ -142,17 +134,7 @@ export function Navbar() {
                 </a>
               </li>
             ))}
-            <li className="pt-2">
-              <LinkButton
-                href="/CV_ThourayaJamai.pdf"
-                download
-                size="sm"
-                className="w-full bg-olive text-primary-foreground hover:bg-olive/90"
-              >
-                <Download className="size-4" />
-                Download Resume
-              </LinkButton>
-            </li>
+            
           </ul>
         </div>
       )}

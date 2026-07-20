@@ -95,14 +95,7 @@ export function Hero() {
               View Projects
               <ArrowRight className="size-4" />
             </LinkButton>
-            <LinkButton
-              href="/CV_ThourayaJamai.pdf"
-              download="/CV_ThourayaJamai.pdf"
-              className="border border-brown/30 bg-transparent text-brown hover:bg-secondary"
-            >
-              <Download className="size-4" />
-              Download Resume
-            </LinkButton>
+            
           </motion.div>
 
           <motion.div
