@@ -13,7 +13,8 @@ const categories = [
   {
     icon: Brain,
     title: 'Artificial Intelligence',
-    skills: ['Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision','Indexing', 'Information Retrieval'],
+    skills: ['Machine Learning', 'Deep Learning', 'NLP', 'Computer Vision','Indexing', 'Information Retrieval',  'LLMs',
+      'RAG','Semantic Search'],
   },
    {
     icon: LineChart,
@@ -23,23 +24,26 @@ const categories = [
   {
     icon: Boxes,
     title: 'Frameworks & Libraries',
-    skills: ['PyTorch', 'TensorFlow', 'Keras','NLTK','Scikit-Learn', 'Pandas','numpy','OpenCV','Matplotlib','Seaborn','FAISS', 'Annoy',],
+    skills: ['PyTorch', 'TensorFlow', 'Keras','NLTK','Scikit-Learn', 'Pandas','numpy','OpenCV','Matplotlib','Seaborn','FAISS', 'Annoy','Hugging Face', 'FastAPI',
+  'Pydantic',
+  'SQLAlchemy',],
   },
    {
     icon: Boxes,
-    title: 'Databases & Business Intelligence',
-    skills: ['SQL', 'MySQL', 'Power BI','Excel','Database Design'],
+    title: 'Databases & Data Tools',
+    skills: ['MySQL', 'PostgreSQL',
+      'pgvector','Database Design','Power BI','Excel'],
   },
    {
     icon: Terminal,
     title: 'Programming Languages',
-    skills: ['Python', 'SQL', 'Dart', 'PHP'],
+    skills: ['Python', 'SQL'],
   },
 
   {
     icon: Code2,
     title: 'Software Development',
-    skills: ['Flutter', 'Laravel', 'Firebase', 'HTML','CSS','PHP','UML','phpMyAdmin','Git', 'GitHub',],
+    skills: ['REST APIs','Flutter', 'Laravel', 'Firebase','Dart','HTML','CSS','PHP','Git', 'GitHub',],
   },
  
   

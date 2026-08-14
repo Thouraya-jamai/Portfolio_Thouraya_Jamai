@@ -9,12 +9,14 @@ import { LinkButton } from '@/components/link-button'
 import { cn } from '@/lib/utils'
 
 type Category =
+  |'AI Engineering'
   |'Computer Vision'
   | 'NLP'
   | 'Data mining'
 
 const filters = [
   'All',
+  'AI Engineering',
   'Computer Vision',
   'NLP',
   'Data mining',
@@ -28,8 +30,33 @@ const projects: {
   image: string
   description: string
   tech: string[]
-  github:string
+  github?: string
 }[] = [
+  {
+  slug: 'ai_customer_support_assistant',
+  title: 'AI-Powered Customer Support Assistant',
+  category: 'AI Engineering',
+  date: 'Aug 2026 – Present',
+  image: '/images/ai_assistant.png',
+  description:
+    'An AI-powered customer support assistant using RAG to turn company knowledge into fast, accurate responses while reducing time spent searching and answering repetitive questions.',
+  tech: [
+    'LLMs',
+    'RAG',
+    'Embeddings',
+    'Vector Search',
+    "Semantic Search",
+    "Document Processing",
+    'FastAPI',
+    "REST APIs",
+    'PostgreSQL',
+    "SQLAlchemy",
+    "Alembic",
+    "pgvector",
+    
+  ],
+    github: "https://github.com/Thouraya-jamai/ai-customer-support-assistant",
+},
   {
     slug: 'cbvir',
     title: 'Content-Based Video Indexing & Retrieval System',
@@ -173,16 +200,18 @@ useEffect(() => {
         </div>
 
         <div className="mt-auto flex items-center justify-between">
-          <LinkButton
-            href={p.github}
-            target="_blank"
-            rel="noreferrer"
-            size="sm"
-            className="border border-brown/30 bg-transparent text-brown hover:bg-secondary"
-          >
-            <GithubIcon className="size-4" />
-            View on GitHub
-          </LinkButton>
+          {p.github && (
+  <LinkButton
+    href={p.github}
+    target="_blank"
+    rel="noreferrer"
+    size="sm"
+    className="border border-brown/30 bg-transparent text-brown hover:bg-secondary"
+  >
+    <GithubIcon className="size-4" />
+    View on GitHub
+  </LinkButton>
+)}
 
           <LinkButton
             href={`/projects/${p.slug}`}
