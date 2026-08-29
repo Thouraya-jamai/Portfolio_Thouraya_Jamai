@@ -36,7 +36,7 @@ const projects: {
   slug: 'ai_customer_support_assistant',
   title: 'AI-Powered Customer Support Assistant',
   category: 'AI Engineering',
-  date: 'Aug 2026 – Present',
+  date: 'Aug 2026',
   image: '/images/ai_assistant.png',
   description:
     'An AI-powered customer support assistant using RAG to turn company knowledge into fast, accurate responses while reducing time spent searching and answering repetitive questions.',
@@ -53,6 +53,9 @@ const projects: {
     "SQLAlchemy",
     "Alembic",
     "pgvector",
+    "Docker",
+    "React",
+    "TypeScript"
     
   ],
     github: "https://github.com/Thouraya-jamai/ai-customer-support-assistant",

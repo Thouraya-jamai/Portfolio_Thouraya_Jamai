@@ -13,7 +13,11 @@ type TechnicalArchitecture = {
   retrieval: string[]
   storage: string
 }
-
+type EvaluationResults = {
+  metrics: string[]
+  summary: string
+  performance?: string[]
+}
 
 type UserSystemWorkflow = {
   employee: string[]
@@ -25,7 +29,8 @@ type ProjectDetails = {
   github?: string
   description: string
   problem: string
-  tools: string[]
+  tools?: string[]
+  video?: string
   screenshots?: string[]
   methodology: string[]
   results?: string
@@ -36,7 +41,10 @@ type ProjectDetails = {
 
   technicalArchitecture?: TechnicalArchitecture
   userSystemWorkflow?: UserSystemWorkflow
+  evaluation?: EvaluationResults
+  technologyCategories?: Record<string, string[]>
 }
+
 function TechnicalArchitectureCard({
   architecture,
 }: {
@@ -56,14 +64,26 @@ function TechnicalArchitectureCard({
             Technical components and data flow used to build the AI assistant.
           </p>
         </div>
-
-        {/* FASTAPI */}
         <div className="flex flex-col items-center">
+        {/* FRONTEND */}
+
+  <div className="w-full max-w-[210px] rounded-lg bg-olive px-3 py-2 text-center text-xs font-semibold text-white">
+    React + TypeScript
+    <div className="mt-0.5 text-[10px] font-normal text-white/70">
+      Frontend
+    </div>
+  </div>
+
+  <div className="text-[10px] text-olive">
+    ↓
+  </div>
+        {/* FASTAPI */}
+        
 
           <div className="w-full max-w-[210px] rounded-lg bg-brown px-3 py-2 text-center text-xs font-semibold text-white">
             FastAPI
             <div className="mt-0.5 text-[10px] font-normal text-white/70">
-              API Layer
+              REST API Layer
             </div>
           </div>
 
@@ -212,10 +232,90 @@ function TechnicalArchitectureCard({
     </Reveal>
   )
 }
-function TechnologyStackCard({
-  tools,
+function EvaluationResultsCard({
+  evaluation,
 }: {
-  tools: string[]
+  evaluation: EvaluationResults
+}) {
+  return (
+    <Reveal delay={0.5}>
+      <div className="rounded-3xl border border-white/10 bg-[#F5E9D3] p-6">
+
+        <h2 className="mb-2 text-xl font-semibold text-brown">
+          Evaluation & Results
+        </h2>
+
+        <p className="mb-5 text-xs text-[#5A4A42]/70">
+          Retrieval quality and system performance evaluation of the RAG assistant.
+        </p>
+
+        {/* RETRIEVAL METRICS */}
+        <h3 className="mb-3 text-xs font-semibold uppercase tracking-wider text-olive">
+          Retrieval & System Performance
+        </h3>
+
+      <div className="mb-5 grid w-full grid-cols-5 gap-2">
+
+  <div className="rounded-md border border-olive/20 bg-white/30 px-2 py-1.5 text-center">
+    <div className="text-[8px] uppercase tracking-wide text-[#5A4A42]/70">
+      Recall@2
+    </div>
+    <div className="text-sm font-semibold text-brown">
+      0.78
+    </div>
+  </div>
+
+  <div className="rounded-md border border-olive/20 bg-white/30 px-2 py-1.5 text-center">
+    <div className="text-[8px] uppercase tracking-wide text-[#5A4A42]/70">
+      Precision@2
+    </div>
+    <div className="text-sm font-semibold text-brown">
+      0.47
+    </div>
+  </div>
+
+  <div className="rounded-md border border-olive/20 bg-white/30 px-2 py-1.5 text-center">
+    <div className="text-[8px] uppercase tracking-wide text-[#5A4A42]/70">
+      MRR@2
+    </div>
+    <div className="text-sm font-semibold text-brown">
+      0.78
+    </div>
+  </div>
+
+  <div className="rounded-md border border-olive/20 bg-white/30 px-2 py-1.5 text-center">
+    <div className="text-[8px] uppercase tracking-wide text-[#5A4A42]/70">
+      Hit Rate@2
+    </div>
+    <div className="text-sm font-semibold text-brown">
+      0.79
+    </div>
+  </div>
+
+  <div className="rounded-md border border-olive/20 bg-white/30 px-2 py-1.5 text-center">
+    <div className="text-[8px] uppercase tracking-wide text-[#5A4A42]/70">
+      Response Time
+    </div>
+    <div className="text-sm font-semibold text-brown">
+      ~2s
+    </div>
+  </div>
+
+</div>
+
+        {/* CONCLUSION */}
+        <p className="text-sm leading-relaxed text-[#5A4A42]">
+          Optimized RAG using <strong>top-k=2 </strong>and optimized <strong>Gemini configuration</strong>, achieving strong retrieval quality with <strong>~2s </strong> response time.
+        </p>
+
+      </div>
+    </Reveal>
+  )
+}
+function TechnologyStackCard({
+  categories,
+}: {
+  categories: Record<string, string[]>
 }) {
   return (
     <Reveal delay={0.4}>
@@ -225,14 +325,24 @@ function TechnologyStackCard({
           Technology Stack
         </h2>
 
-        <div className="flex flex-wrap gap-2">
-          {tools.map((tool, i) => (
-            <span
-              key={`${tool}-${i}`}
-              className="rounded-full border border-brown/30 bg-brown/90 px-3 py-1.5 text-xs text-white/80"
-            >
-              {tool}
-            </span>
+        <div className="space-y-4">
+          {Object.entries(categories).map(([category, tools]) => (
+            <div key={category}>
+              <h3 className="mb-2 text-xs font-semibold uppercase tracking-wider text-olive">
+                {category}
+              </h3>
+
+              <div className="flex flex-wrap gap-2">
+                {tools.map((tool, i) => (
+                  <span
+                    key={`${tool}-${i}`}
+                    className="rounded-full border border-brown/30 bg-brown/90 px-3 py-1.5 text-xs text-white/80"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
 
@@ -346,32 +456,47 @@ const projectDetails: Record<string, ProjectDetails> = {
 "ai_customer_support_assistant": {
   title: "AI Customer Support Assistant",
   github: "https://github.com/Thouraya-jamai/ai-customer-support-assistant",
-  status: "In Progress",
 
   description:
     "An AI-powered customer support assistant that uses Retrieval-Augmented Generation (RAG) to answer customer questions based on a company's internal knowledge base.",
 
   problem:
     "Customer support teams often spend significant time searching through company documents to answer repetitive questions. This project explores how an AI assistant can retrieve relevant information from a company's knowledge base and provide fast, context-aware responses.",
-
-  tools: [
-    "Python",
-    "LLM",
+  technologyCategories: {
+  AI: [
+    "LLMs",
+    "Gemini API",
     "RAG",
     "Embeddings",
-    "Document Processing",
-    "Prompt Engineering",
     "Semantic Search",
     "Vector Search",
+    "Prompt Engineering",
+  ],
+
+  Backend: [
+    "Python",
     "FastAPI",
     "REST APIs",
-     "SQLAlchemy",
+  ],
+
+  Data: [
+    "Document Processing",
+    "SQLAlchemy",
     "Alembic",
     "PostgreSQL",
     "pgvector",
-    
+  ],
+  Frontend: [
+    "React",
+    "TypeScript",
   ],
 
+  Infrastructure: [
+    "Docker",
+  ],
+ 
+},
+  
 
 technicalArchitecture: {
   api: "FastAPI",
@@ -408,7 +533,24 @@ userSystemWorkflow: {
     "Client receives answer",
   ],
 },
+evaluation: {
+  metrics: [
+    "Recall@K",
+    "Precision@K",
+    "Hit Rate@K",
+    "MRR",
+  ],
 
+  summary:
+    "Evaluated retrieval quality across different top-k configurations. The evaluation showed that top-k=3 provides the best balance between retrieval coverage and precision for this dataset.",
+
+  performance: [
+    "Measured inference time across each RAG pipeline stage",
+    "Identified LLM answer generation as the main latency bottleneck",
+    "Optimized the Gemini model configuration",
+    "Reduced inference time from ~7s to ~2s",
+  ],
+},
   methodology: [
     "Backend API development with FastAPI",
     "Document ingestion and text extraction",
@@ -429,8 +571,12 @@ userSystemWorkflow: {
     "Connecting LLMs with external knowledge",
     "Thinking about AI systems from an engineering perspective",
   ],
-
-  screenshots: ["/images/ai_assistant.png",],
+  video: "/videos/ai_assistance.mp4",
+  screenshots: [
+    "/images/swagger.png",
+    "/images/evaluations.png",
+    
+  ],
 },
   "cbvir": {
     title: "Content-Based Video Indexing & Retrieval System",
@@ -677,8 +823,16 @@ const project = projectDetails[slug as keyof typeof projectDetails]
 if (!project) return <div>Project not found</div>
   
 const images = project?.screenshots ?? []
+const media = [
+  ...(project.video ? [{ type: "video" as const, src: project.video }] : []),
+  ...images.map((src) => ({
+    type: "image" as const,
+    src,
+  })),
+]
 const technicalArchitecture = project.technicalArchitecture
 const userSystemWorkflow = project.userSystemWorkflow
+
 
   return (
     <section className="bg-olive">
@@ -711,37 +865,50 @@ const userSystemWorkflow = project.userSystemWorkflow
 
     <div className="relative flex h-full min-h-[550px] items-center justify-center overflow-hidden rounded-3xl border border-white/10 bg-[#F5E9D3] transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
 
-      <Image
-        src={images[index]}
-        alt="project screenshot"
-        width={1200}
-  height={700}
-  className="h-[560px] w-[790px] shrink-0 object-contain"
-      />
+{media.length > 0 && media[index] && (
+  media[index].type === "video" ? (
+    <video
+      src={media[index].src}
+      controls
+      className="h-[560px] w-[790px] object-contain"
+    />
+  ) : (
+    <Image
+      src={media[index].src}
+      alt={`${project.title} screenshot ${index + 1}`}
+      width={1200}
+      height={700}
+      className="h-[560px] w-[790px] shrink-0 object-contain"
+    />
+  )
+)}
 
       {/* PREVIOUS */}
-      <button
-        onClick={() =>
-          setIndex((prev) =>
-            prev === 0 ? images.length - 1 : prev - 1
-          )
-        }
-        className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-olive-soft px-3 py-1 text-white"
-      >
-        ←
-      </button>
+      {media.length > 1 && (
+  <>
+    <button
+      onClick={() =>
+        setIndex((prev) =>
+          prev === 0 ? media.length - 1 : prev - 1
+        )
+      }
+      className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-olive-soft px-3 py-1 text-white"
+    >
+      ←
+    </button>
 
-      {/* NEXT */}
-      <button
-        onClick={() =>
-          setIndex((prev) =>
-            prev === images.length - 1 ? 0 : prev + 1
-          )
-        }
-        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-olive-soft px-3 py-1 text-white"
-      >
-        →
-      </button>
+    <button
+      onClick={() =>
+        setIndex((prev) =>
+          prev === media.length - 1 ? 0 : prev + 1
+        )
+      }
+      className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-olive-soft px-3 py-1 text-white"
+    >
+      →
+    </button>
+  </>
+)}
 
     </div>
 
@@ -809,23 +976,37 @@ const userSystemWorkflow = project.userSystemWorkflow
 
 </div>
 
-{/* AI ASSISTANT → ARCHITECTURE + TECHNOLOGY STACK */}
 
-{slug === "ai_customer_support_assistant" &&
-  technicalArchitecture && (
-    <div className="mt-8 grid items-start gap-8 lg:grid-cols-[57fr_43fr]">
+{/* AI ASSISTANT → ARCHITECTURE + EVALUATION + TECHNOLOGY STACK */}
 
-      {/* LEFT → TECHNICAL ARCHITECTURE */}
-      <TechnicalArchitectureCard
-        architecture={technicalArchitecture}
-      />
+{slug === "ai_customer_support_assistant" && technicalArchitecture && (
+  <div className="mt-8 grid items-start gap-8 lg:grid-cols-[57fr_43fr]">
 
-      {/* RIGHT → TECHNOLOGY STACK */}
-      <TechnologyStackCard
-        tools={project.tools}
-      />
+    {/* LEFT → TECHNICAL ARCHITECTURE */}
+    <TechnicalArchitectureCard
+      architecture={technicalArchitecture}
+    />
+
+    {/* RIGHT → EVALUATION + TECHNOLOGY STACK */}
+    <div className="flex flex-col gap-6">
+
+      {/* EVALUATION & RESULTS */}
+      {project.evaluation && (
+        <EvaluationResultsCard
+          evaluation={project.evaluation}
+        />
+      )}
+
+      {/* TECHNOLOGY STACK */}
+      {project.technologyCategories && (
+        <TechnologyStackCard
+          categories={project.technologyCategories}
+        />
+      )}
 
     </div>
+
+  </div>
 )}
 
 
@@ -858,7 +1039,7 @@ const userSystemWorkflow = project.userSystemWorkflow
         </h2>
 
         <div className="flex flex-wrap gap-2">
-          {project.tools.map((t, i) => (
+          {(project.tools ?? []).map((t, i) => (
             <span
               key={`${t}-${i}`}
               className="rounded-full border border-brown/30 bg-brown/90 px-3 py-1 text-xs text-white/80"
